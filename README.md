@@ -1,6 +1,6 @@
 # Helm Chart for EventStore DB
 
-[Event Store](https://eventstore.org/) is an open-source, functional database with Complex Event Processing in JavaScript.
+[Event Store](https://eventstore.org/) is an open-source database for storing stream of events and supporting Event Sourcing components.
 This chart bootstraps a [Event Store](https://hub.docker.com/r/eventstore/eventstore/)
 deployment on a [Kubernetes](http://kubernetes.io) cluster
 using the [Helm](https://helm.sh) package manager.
