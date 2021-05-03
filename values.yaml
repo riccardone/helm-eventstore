@@ -6,7 +6,7 @@
 image: eventstore/eventstore
 ##
 ## Event Store image tag
-imageTag: release-5.0.9
+imageTag: release-5.0.10
 ##
 ## Specify a imagePullPolicy
 ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -80,7 +80,13 @@ gossipAllowedDiffMs: 600000
 ## ref: https://eventstore.org/docs/server/command-line-arguments/index.html#parameter-list
 ## example:
 ##  EVENTSTORE_RUN_PROJECTIONS: System
-eventStoreConfig: {}
+eventStoreConfig: {
+  EVENTSTORE_INT_TCP_HEARTBEAT_INTERVAL: 3000
+  EVENTSTORE_INT_TCP_HEARTBEAT_TIMEOUT: 1500
+  EVENTSTORE_EXT_TCP_HEARTBEAT_INTERVAL: 6000
+  EVENTSTORE_EXT_TCP_HEARTBEAT_TIMEOUT: 3000
+  EVENTSTORE_RUN_PROJECTIONS: None
+}
 
 ##
 ## Schedule a scavenging CronJob
