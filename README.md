@@ -1,9 +1,21 @@
 # Helm Chart for EventStore DB
 
-[Event Store](https://eventstore.org/) is an open-source,
-functional database with Complex Event Processing in JavaScript.
+[Event Store](https://eventstore.org/) is an open-source, functional database with Complex Event Processing in JavaScript.
+This chart bootstraps a [Event Store](https://hub.docker.com/r/eventstore/eventstore/)
+deployment on a [Kubernetes](http://kubernetes.io) cluster
+using the [Helm](https://helm.sh) package manager.
 
-## TL;DR;
+## Prerequisites
+
+- Kubernetes cluster 1.10+
+- Helm 3.0.0+
+- PV provisioner support in the underlying infrastructure (only when persisting data)
+
+## Installing the Chart
+
+The below commands install Event Store with the default configuration.
+The [configuration](#configuration) section below lists the parameters
+that can be configured during installation.
 
 ```shell
 helm repo add riccardone https://riccardone.github.io/helm-eventstore/
@@ -11,42 +23,15 @@ helm repo update
 helm install eventstore .
 ```
 
-The default username and password for the admin interface is `admin:changeit`
-
-To browse the admin interface you don't need to expose it further. Just use the port-forward feature to link a proxy from your local machine to your Kubernetes cluster where EventStore is running:
-
-> kubectl port-forward svc/eventstore-admin 2113
-
-## Introduction
-
-This chart bootstraps a [Event Store](https://hub.docker.com/r/eventstore/eventstore/)
-deployment on a [Kubernetes](http://kubernetes.io) cluster
-using the [Helm](https://helm.sh) package manager.
-
-## Prerequisites
-
-- Kubernetes 1.4+ with Beta APIs enabled
-- PV provisioner support in the underlying infrastructure (Only when persisting data)
-
-## Installing the Chart
-
-Add the Event Store Charts repository.
-
-```shell
-helm repo add riccardone https://riccardone.github.io/helm-eventstore/ 
-helm repo update
-helm install eventstore .
-```
-
 To install the EventStore chart with a persistent volume bound:
-
 ```shell
 helm install eventstore . --set persistence.enabled=true
 ```
 
-The above commands install Event Store with the default configuration.
-The [configuration](#configuration) section below lists the parameters
-that can be configured during installation.
+To browse the admin interface you don't need to expose it further. Just use the port-forward feature to link a proxy from your local machine to your Kubernetes cluster where EventStore is running:
+> kubectl port-forward svc/eventstore-admin 2113
+
+The default username and password for the admin interface is `admin:changeit`
 
 ## Deleting the Chart
 
