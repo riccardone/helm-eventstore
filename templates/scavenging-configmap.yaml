@@ -1,0 +1,38 @@
+{{- if .Values.scavenging.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "eventstore.fullname" . }}-scavenging
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    app.kubernetes.io/name: {{ include "eventstore.name" . }}
+    helm.sh/chart: {{ include "eventstore.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/component: scavenging
+data:
+  es-scavenging: |-
+    #!/usr/bin/env sh
+    set -e
+
+    echo "[`date`] Start instructing all nodes to scavenge"
+    pods=$(kubectl get pods -l app.kubernetes.io/name={{ include "eventstore.name" . }},app.kubernetes.io/instance={{ .Release.Name }} -o name)
+
+    if [ -z "$pods" ]; then
+      echo "[`date`] ERROR: Found no EventStore nodes. Is the EventStore up? Are we targeting the right pods?" >&2
+      exit 1
+    else
+      for podname in $pods; do
+        echo "[`date`] Instructing node ${podname##pod/} to scavenge"
+        kubectl exec ${podname##pod/} -- \
+          curl \
+            -si \
+            -d {} \
+            -X POST \
+            -u 'admin:{{ .Values.admin.password | default "changeit" }}' \
+            "http://localhost:{{ .Values.intHttpPort }}/admin/scavenge"
+      done
+
+      echo "[`date`] Instructed all nodes to scavenge"
+    fi
+{{- end }}
