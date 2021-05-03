@@ -8,7 +8,7 @@ functional database with Complex Event Processing in JavaScript.
 ```shell
 helm repo add riccardone https://riccardone.github.io/helm-eventstore/
 helm repo update
-helm install -n eventstore riccardone/eventstore
+helm install eventstore riccardone/eventstore
 ```
 
 > The default username and password for the admin interface
@@ -37,7 +37,7 @@ helm repo update
 To install the EventStore chart with the release name `eventstore`:
 
 ```shell
-helm install -n eventstore riccardone/eventstore
+helm install eventstore riccardone/eventstore
 ```
 
 The above commands install Event Store with the default configuration.
@@ -49,7 +49,7 @@ that can be configured during installation.
 Delete the `eventstore` release.
 
 ```shell
-helm delete eventstore --purge
+helm delete eventstore
 ```
 
 This command removes all the Kubernetes components
