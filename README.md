@@ -1,4 +1,4 @@
-# Event Store
+# Helm Chart for EventStore DB
 
 [Event Store](https://eventstore.org/) is an open-source,
 functional database with Complex Event Processing in JavaScript.
