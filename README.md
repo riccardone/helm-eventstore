@@ -6,9 +6,9 @@ functional database with Complex Event Processing in JavaScript.
 ## TL;DR;
 
 ```shell
-helm repo add ameier38 https://ameier38.github.io/charts
+helm repo add riccardone https://riccardone.github.io/helm-eventstore/
 helm repo update
-helm install -n eventstore ameier38/eventstore
+helm install -n eventstore riccardone/eventstore
 ```
 
 > The default username and password for the admin interface
@@ -30,14 +30,14 @@ using the [Helm](https://helm.sh) package manager.
 Add the Event Store Charts repository.
 
 ```shell
-helm repo add ameier38 https://ameier38.github.io/charts
+helm repo add riccardone https://riccardone.github.io/helm-eventstore/ 
 helm repo update
 ```
 
-To install the Event Store chart with the release name `eventstore`:
+To install the EventStore chart with the release name `eventstore`:
 
 ```shell
-helm install -n eventstore ameier38/eventstore
+helm install -n eventstore riccardone/eventstore
 ```
 
 The above commands install Event Store with the default configuration.
@@ -62,7 +62,7 @@ The following table lists the configurable parameters of the Event Store chart a
 | Parameter                            | Description                                                                   | Default                      |
 | ------------------------------------ | ----------------------------------------------------------------------------- | ---------------------------- |
 | `image`                              | Container image name                                                          | `eventstore/eventstore`      |
-| `imageTag`                           | Container image tag                                                           | `release-4.1.1-hotfix1`      |
+| `imageTag`                           | Container image tag                                                           | `release-5.0.10`             |
 | `imagePullPolicy`                    | Container pull policy                                                         | `IfNotPresent`               |
 | `imagePullSecrets`                   | Specify image pull secrets                                                    | `nil`                        |
 | `clusterSize`                        | The number of nodes in the cluster                                            | `3`                          |
@@ -224,7 +224,7 @@ for more details.
 
 ## Additional Resources
 
-- [Event Store Docs](https://eventstore.org/docs/)
-- [Event Store Parameters](https://eventstore.org/docs/server/command-line-arguments/index.html#parameter-list)
-- [Event Store Docker Container](https://github.com/EventStore/eventstore-docker)
+- [Event Store Docs](https://eventstore.com/docs/)
+- [Event Store Parameters](https://eventstore.com/docs/server/command-line-arguments/index.html#parameter-list)
+- [Event Store Docker Container](https://github.com/EventStore/EventStore/blob/master/Dockerfile)
 - [Chart Template Guide](https://github.com/helm/helm/tree/master/docs/chart_template_guide)
