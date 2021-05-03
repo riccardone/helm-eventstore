@@ -8,11 +8,15 @@ functional database with Complex Event Processing in JavaScript.
 ```shell
 helm repo add riccardone https://riccardone.github.io/helm-eventstore/
 helm repo update
-helm install eventstore riccardone/eventstore
+helm install eventstore .
 ```
 
 > The default username and password for the admin interface
 > is `admin:changeit`.
+
+To browse the admin interface you don't need to expose it further. Just use the port-forward feature to link a proxy from your local machine to the kubernetes cluster contaxt where EventStore is running.  
+
+> kubectl port-forward svc/eventstore-admin 2113
 
 ## Introduction
 
@@ -32,12 +36,13 @@ Add the Event Store Charts repository.
 ```shell
 helm repo add riccardone https://riccardone.github.io/helm-eventstore/ 
 helm repo update
+helm install eventstore .
 ```
 
-To install the EventStore chart with the release name `eventstore`:
+To install the EventStore chart with a persistent volume bound:
 
 ```shell
-helm install eventstore riccardone/eventstore
+helm install eventstore . --set persistence.enabled=true
 ```
 
 The above commands install Event Store with the default configuration.
@@ -52,8 +57,7 @@ Delete the `eventstore` release.
 helm delete eventstore
 ```
 
-This command removes all the Kubernetes components
-associated with the chart and deletes the release.
+This command removes all the Kubernetes components associated with the chart and deletes the release.
 
 ## Configuration
 
@@ -155,7 +159,7 @@ allowVolumeExpansion: true
     ```
 3. Update the chart values with the new storage request value that you edited in step (1). 
     ```shell
-    helm upgrade eventstore eventstore/eventstore --set 'persistence.size=<value from step (1)>'
+    helm upgrade eventstore . --set 'persistence.size=<value from step (1)>'
     ```
 
 ### __Option 2__: Resize PVC created without volume expansion enabled
