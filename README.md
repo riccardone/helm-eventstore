@@ -11,10 +11,9 @@ helm repo update
 helm install eventstore .
 ```
 
-> The default username and password for the admin interface
-> is `admin:changeit`.
+The default username and password for the admin interface is `admin:changeit`
 
-To browse the admin interface you don't need to expose it further. Just use the port-forward feature to link a proxy from your local machine to the kubernetes cluster contaxt where EventStore is running.  
+To browse the admin interface you don't need to expose it further. Just use the port-forward feature to link a proxy from your local machine to your Kubernetes cluster where EventStore is running:
 
 > kubectl port-forward svc/eventstore-admin 2113
 
